@@ -11,7 +11,7 @@
     }
 
 ?><!doctype html>
-<html lang="{{ $app('i18n')->locale }}" data-base="@base('/')" data-route="/" data-version="{{ $app['cockpit/version'] }}" data-locale="{{ $app('i18n')->locale }}">
+<html lang="{{ $app('i18n')->locale }}" data-base="@base('/')" data-route="@route('/')" data-version="{{ $app['cockpit/version'] }}" data-locale="{{ $app('i18n')->locale }}">
 <head>
     <meta charset="UTF-8">
     <title>{{ $app['app.name'] }}</title>

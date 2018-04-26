@@ -921,6 +921,8 @@ class App implements \ArrayAccess {
             $this["route"] = $route;
         }
 
+        $this["route"]= str_replace('cockpit/cockpit', 'cockpit', $this["route"]);
+
         register_shutdown_function(function() use($self){
 
             if ($self->isExit()){

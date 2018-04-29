@@ -15,7 +15,7 @@
         },
 
         route: function(url) {
-            return this.base_route+url;
+            return (this.base_route+url).replace('/cockpit/cockpit', '/cockpit');
         },
 
         reroute: function(url){

@@ -15,7 +15,11 @@
         },
 
         route: function(url) {
-            return (this.base_route+url).replace('/cockpit/cockpit', '/cockpit');
+            if (url.indexOf('thumb_url') > -1) {
+                return (this.base_route+url).replace('/cockpit/cockpit', '/cockpit');
+            } else {
+                return (this.base_route+url);
+            }
         },
 
         reroute: function(url){

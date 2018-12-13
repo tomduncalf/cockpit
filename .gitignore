@@ -16,3 +16,6 @@ addons/
 !/storage/*/index.html
 !/storage/*/.htaccess
 defines.php
+fonts
+images
+images_old

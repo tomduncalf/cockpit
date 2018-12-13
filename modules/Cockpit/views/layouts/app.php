@@ -176,8 +176,8 @@
 
                     </div>
 
-                    <a href="http://new.face37.com/deploy/preview.php" target="_blank" style="margin-left: 10px">▶️ Preview</a>
-                    <a href="http://face37.com/deploy/publish.php" target="_blank" style="margin-left: 10px">🌎 Publish</a>
+                    <a href="http://new.f37foundry.com/deploy/preview.php" target="_blank" style="margin-left: 10px">▶️ Preview</a>
+                    <a href="http://f37foundry.com/deploy/publish.php" target="_blank" style="margin-left: 10px">🌎 Publish</a>
 
                 </div>
 

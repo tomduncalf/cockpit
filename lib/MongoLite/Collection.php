@@ -72,9 +72,18 @@ class Collection {
      */
     protected function _insert(&$document) {
 
+        $json = $document;
+        //JSON_NUMERIC_CHECK - without destroying values with leading zeros
+        array_walk_recursive($json, function (&$val, $key) {
+             if (is_string($val) && is_numeric($val) && $val[0] !== '0') {
+                $val += 0;
+            }
+        });
+        $json            = json_encode($json, JSON_UNESCAPED_UNICODE);
+
         $table           = $this->name;
         $document["_id"] = uniqid().'doc'.rand();
-        $data            = array("document" => json_encode($document, JSON_NUMERIC_CHECK | JSON_UNESCAPED_UNICODE));
+        $data            = array("document" => $json);
 
         $fields = array();
         $values = array();
@@ -123,11 +132,17 @@ class Collection {
         $stmt   = $this->database->connection->query($sql);
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
+        array_walk_recursive($data, function (&$val, $key) {
+            if (is_string($val) && is_numeric($val) && $val[0] !== '0') {
+               $val += 0;
+           }
+        });
+
         foreach($result as &$doc) {
 
             $document = array_merge(json_decode($doc["document"], true), $data);
 
-            $sql = "UPDATE ".$this->name." SET document=".$this->database->connection->quote(json_encode($document,JSON_NUMERIC_CHECK | JSON_UNESCAPED_UNICODE))." WHERE id=".$doc["id"];
+            $sql = "UPDATE ".$this->name." SET document=".$this->database->connection->quote(json_encode($document, JSON_UNESCAPED_UNICODE))." WHERE id=".$doc["id"];
 
             $this->database->connection->exec($sql);
         }

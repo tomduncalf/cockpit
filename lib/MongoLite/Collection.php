@@ -72,6 +72,8 @@ class Collection {
      */
     protected function _insert(&$document) {
 
+        $document["_id"] = uniqid().'doc'.rand();
+
         $json = $document;
         //JSON_NUMERIC_CHECK - without destroying values with leading zeros
         array_walk_recursive($json, function (&$val, $key) {
@@ -82,7 +84,6 @@ class Collection {
         $json            = json_encode($json, JSON_UNESCAPED_UNICODE);
 
         $table           = $this->name;
-        $document["_id"] = uniqid().'doc'.rand();
         $data            = array("document" => $json);
 
         $fields = array();
